@@ -2,193 +2,164 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Welcome</title>
+  <title>Welcome To My World</title>
   <style>
-    /* Reset & Base */
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
     body {
-      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(to bottom right, #f8f9fb, #e9ecf1);
+      margin: 0;
+      padding: 0;
       display: flex;
       flex-direction: column;
       align-items: center;
-      background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-      color: #111;
-      padding: 40px;
+      justify-content: flex-start;
+      min-height: 100vh;
+      color: #1c1c1e;
     }
 
-    /* Title */
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 20px;
-      font-weight: 600;
-      color: #111;
+    header {
+      width: 100%;
+      padding: 20px;
       text-align: center;
+      font-size: 2rem;
+      font-weight: 600;
+      background: white;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      border-radius: 0 0 20px 20px;
     }
 
-    /* Search Box */
-    .search-container {
+    .search-bar {
+      margin: 30px 0;
       display: flex;
       gap: 10px;
-      margin-top: 20px;
-      margin-bottom: 30px;
-      width: 100%;
-      max-width: 500px;
     }
-    .search-container input {
-      flex: 1;
-      padding: 12px 15px;
-      border-radius: 14px;
-      border: 1px solid #ddd;
+
+    .search-bar input {
+      padding: 12px 16px;
       font-size: 1rem;
+      border: 1px solid #d1d1d6;
+      border-radius: 12px;
       outline: none;
-      background: rgba(255,255,255,0.6);
-      backdrop-filter: blur(10px);
+      width: 260px;
+      transition: all 0.2s ease;
     }
-    .search-container button {
-      padding: 12px 20px;
-      border: none;
-      border-radius: 14px;
+    .search-bar input:focus {
+      border-color: #007aff;
+      box-shadow: 0 0 0 2px rgba(0,122,255,0.2);
+    }
+
+    .search-bar button {
       background: #007aff;
+      border: none;
       color: white;
+      padding: 12px 20px;
       font-size: 1rem;
+      border-radius: 12px;
       cursor: pointer;
-      transition: 0.3s;
+      transition: background 0.3s ease;
     }
-    .search-container button:hover {
+    .search-bar button:hover {
       background: #005ecb;
     }
 
-    /* Stats Grid */
-    .stats-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
-      width: 100%;
-      max-width: 1000px;
-    }
-
-    /* Card */
     .card {
-      background: rgba(255,255,255,0.7);
-      backdrop-filter: blur(12px);
+      background: white;
       border-radius: 20px;
       padding: 25px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-      text-align: center;
-      transition: transform 0.2s ease;
-    }
-    .card:hover {
-      transform: translateY(-5px);
-    }
-    .card h2 {
-      font-size: 1.4rem;
-      margin-bottom: 15px;
-      color: #111;
-    }
-    .card p {
-      font-size: 1rem;
-      margin: 6px 0;
-      color: #333;
-    }
-    .card em {
-      font-size: 0.85rem;
-      color: #666;
+      margin: 20px 0;
+      width: 90%;
+      max-width: 500px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+      animation: fadeIn 0.5s ease;
     }
 
-    /* Logout Button */
-    .logout-btn {
-      margin-top: 40px;
-      padding: 14px 28px;
-      background: #ff3b30;
-      border: none;
-      border-radius: 16px;
-      font-size: 1rem;
-      color: white;
-      cursor: pointer;
-      transition: 0.3s;
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.4rem;
+      color: #111;
     }
-    .logout-btn:hover {
-      background: #d6281c;
+
+    .card p {
+      margin: 8px 0;
+      font-size: 1rem;
+    }
+
+    .logout {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #ff3b30;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .logout:hover {
+      background: #d32f2f;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(10px);}
+      to {opacity: 1; transform: translateY(0);}
     }
   </style>
 </head>
 <body>
-  <h1>Welcome To My World 🌍</h1>
+  <header>🌍 Welcome To My World</header>
 
-  <!-- Search Project -->
-  <div class="search-container">
+  <button class="logout" onclick="logout()">Logout</button>
+
+  <div class="search-bar">
     <input type="number" id="projectIdInput" placeholder="Enter Project ID (e.g. 14300)">
     <button onclick="searchProject()">Search</button>
   </div>
 
-  <!-- Stats -->
-  <div class="stats-container">
-    <div class="card" id="projectStats">
-      <h2>Project Statistics</h2>
-      <p>Search for a project to see stats.</p>
-    </div>
-    <div class="card" id="userStats">
-      <h2>User Statistics</h2>
-      <p>Loading...</p>
-    </div>
+  <div id="projectStats" class="card">
+    <h2>Project Statistics</h2>
+    <p>Enter a project ID above to see statistics.</p>
   </div>
 
-  <!-- Logout -->
-  <button class="logout-btn" onclick="logout()">Logout</button>
-
   <script>
-    // --- Authentication Check ---
-    if(localStorage.getItem("isLoggedIn") !== "true") {
-      window.location.href = "index.html";
-    }
-
     function logout() {
-      localStorage.setItem("isLoggedIn", "false");
+      localStorage.removeItem("username");
+      localStorage.removeItem("password");
       window.location.href = "index.html";
     }
 
-    const username = localStorage.getItem("username");
-
-    // Load User Stats
-    async function loadUserStats() {
-      try {
-        let res = await fetch(`https://tasks.hotosm.org/api/v2/users/${username}/statistics/`);
-        let data = await res.json();
-
-        document.getElementById("userStats").innerHTML = `
-          <h2>User Statistics</h2>
-          <p><strong>Total Mapped:</strong> ${data.mapped}</p>
-          <p><strong>Total Validated:</strong> ${data.validated}</p>
-          <p><strong>Projects Contributed:</strong> ${data.projectsMapped}</p>
-          <em>Mapping contributions for user <b>${username}</b>.</em>
-        `;
-      } catch (err) {
-        document.getElementById("userStats").innerHTML = `<p>Error loading user stats.</p>`;
-      }
-    }
-
-    loadUserStats();
-
-    // Search Project Stats
     async function searchProject() {
       const projectId = document.getElementById("projectIdInput").value;
-      if(!projectId) return;
+      if (!projectId) return;
 
-      document.getElementById("projectStats").innerHTML = `<h2>Project Statistics</h2><p>Loading...</p>`;
+      const card = document.getElementById("projectStats");
+      card.innerHTML = `<h2>Project Statistics</h2><p>Loading...</p>`;
 
       try {
-        let res = await fetch(`https://tasks.hotosm.org/api/v2/projects/${projectId}/statistics/`);
-        let data = await res.json();
+        const res = await fetch(`https://tasks.hotosm.org/api/v2/projects/${projectId}/statistics/`);
+        if (!res.ok) {
+          card.innerHTML = `<h2>Project Statistics</h2>
+                            <p>No data found for Project ${projectId}. Please check the ID.</p>`;
+          return;
+        }
+        const data = await res.json();
 
-        document.getElementById("projectStats").innerHTML = `
+        // Some fields may be undefined, so fallback with "N/A"
+        const totalMappers = data.totalMappers ?? "N/A";
+        const tasksMapped = data.tasksMapped ?? "N/A";
+        const tasksValidated = data.tasksValidated ?? "N/A";
+
+        card.innerHTML = `
           <h2>Project ${projectId} Statistics</h2>
-          <p><strong>Total Mappers:</strong> ${data.totalMappers}</p>
-          <p><strong>Tasks Mapped:</strong> ${data.tasksMapped}</p>
-          <p><strong>Tasks Validated:</strong> ${data.tasksValidated}</p>
-          <em>This shows progress of project ${projectId}.</em>
+          <p><strong>Total Mappers:</strong> ${totalMappers}</p>
+          <p><strong>Tasks Mapped:</strong> ${tasksMapped}</p>
+          <p><strong>Tasks Validated:</strong> ${tasksValidated}</p>
+          <em>Live data fetched from HOT Tasking Manager.</em>
         `;
       } catch (err) {
-        document.getElementById("projectStats").innerHTML = `<p>Error loading project stats.</p>`;
+        console.error(err);
+        card.innerHTML = `<h2>Project Statistics</h2>
+                          <p>Error loading project stats. Please try again later.</p>`;
       }
     }
   </script>
