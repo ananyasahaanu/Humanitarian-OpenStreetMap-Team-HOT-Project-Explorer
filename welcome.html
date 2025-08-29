@@ -28,40 +28,6 @@
       border-radius: 0 0 20px 20px;
     }
 
-    .search-bar {
-      margin: 30px 0;
-      display: flex;
-      gap: 10px;
-    }
-
-    .search-bar input {
-      padding: 12px 16px;
-      font-size: 1rem;
-      border: 1px solid #d1d1d6;
-      border-radius: 12px;
-      outline: none;
-      width: 260px;
-      transition: all 0.2s ease;
-    }
-    .search-bar input:focus {
-      border-color: #007aff;
-      box-shadow: 0 0 0 2px rgba(0,122,255,0.2);
-    }
-
-    .search-bar button {
-      background: #007aff;
-      border: none;
-      color: white;
-      padding: 12px 20px;
-      font-size: 1rem;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-    .search-bar button:hover {
-      background: #005ecb;
-    }
-
     .card {
       background: white;
       border-radius: 20px;
@@ -111,14 +77,9 @@
 
   <button class="logout" onclick="logout()">Logout</button>
 
-  <div class="search-bar">
-    <input type="number" id="projectIdInput" placeholder="Enter Project ID (e.g. 14300)">
-    <button onclick="searchProject()">Search</button>
-  </div>
-
   <div id="projectStats" class="card">
-    <h2>Project Statistics</h2>
-    <p>Enter a project ID above to see statistics.</p>
+    <h2>Project 28320 Statistics</h2>
+    <p>Loading...</p>
   </div>
 
   <script>
@@ -128,40 +89,31 @@
       window.location.href = "index.html";
     }
 
-    async function searchProject() {
-      const projectId = document.getElementById("projectIdInput").value;
-      if (!projectId) return;
-
+    async function fetchProjectStats() {
+      const projectId = 28320;
       const card = document.getElementById("projectStats");
-      card.innerHTML = `<h2>Project Statistics</h2><p>Loading...</p>`;
+      card.innerHTML = `<h2>Project ${projectId} Statistics</h2><p>Loading...</p>`;
 
       try {
         const res = await fetch(`https://tasks.hotosm.org/api/v2/projects/${projectId}/statistics/`);
         if (!res.ok) {
-          card.innerHTML = `<h2>Project Statistics</h2>
-                            <p>No data found for Project ${projectId}. Please check the ID.</p>`;
+          card.innerHTML = `<h2>Project ${projectId} Statistics</h2><p>Error loading project stats. Please try again later.</p>`;
           return;
         }
         const data = await res.json();
-
-        // Some fields may be undefined, so fallback with "N/A"
         const totalMappers = data.totalMappers ?? "N/A";
-        const tasksMapped = data.tasksMapped ?? "N/A";
-        const tasksValidated = data.tasksValidated ?? "N/A";
-
         card.innerHTML = `
           <h2>Project ${projectId} Statistics</h2>
           <p><strong>Total Mappers:</strong> ${totalMappers}</p>
-          <p><strong>Tasks Mapped:</strong> ${tasksMapped}</p>
-          <p><strong>Tasks Validated:</strong> ${tasksValidated}</p>
-          <em>Live data fetched from HOT Tasking Manager.</em>
         `;
       } catch (err) {
         console.error(err);
-        card.innerHTML = `<h2>Project Statistics</h2>
-                          <p>Error loading project stats. Please try again later.</p>`;
+        card.innerHTML = `<h2>Project ${projectId} Statistics</h2><p>Error loading project stats. Please try again later.</p>`;
       }
     }
+
+    // Fetch stats on page load
+    fetchProjectStats();
   </script>
 </body>
 </html>
