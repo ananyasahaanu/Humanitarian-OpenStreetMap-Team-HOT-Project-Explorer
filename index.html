@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login / Signup</title>
+  <style>
+    /* Reset */
+    * {margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', sans-serif;}
+
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 40px 30px;
+      width: 350px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      text-align: center;
+      color: white;
+    }
+
+    .card h2 {
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+      font-weight: 600;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 10px;
+      outline: none;
+      font-size: 1rem;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 12px;
+      margin: 12px 0;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn.signup { background: #4ade80; color: #fff; }
+    .btn.signup:hover { background: #22c55e; }
+    .btn.login { background: #60a5fa; color: #fff; }
+    .btn.login:hover { background: #2563eb; }
+
+    #message { margin-top: 10px; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Welcome</h2>
+    <input type="text" id="username" placeholder="Username" required>
+    <input type="password" id="password" placeholder="Password" required>
+    <button class="btn signup" onclick="signup()">Sign Up</button>
+    <button class="btn login" onclick="login()">Login</button>
+    <p id="message"></p>
+  </div>
+
+  <script>
+    function signup() {
+      let user = document.getElementById("username").value.trim();
+      let pass = document.getElementById("password").value.trim();
+
+      if(user && pass) {
+        localStorage.setItem("username", user);
+        localStorage.setItem("password", pass);
+        document.getElementById("message").style.color = "#4ade80";
+        document.getElementById("message").innerText = "Signup successful! Now login.";
+      } else {
+        document.getElementById("message").style.color = "red";
+        document.getElementById("message").innerText = "Please fill all fields.";
+      }
+    }
+
+    function login() {
+      let user = document.getElementById("username").value.trim();
+      let pass = document.getElementById("password").value.trim();
+      let savedUser = localStorage.getItem("username");
+      let savedPass = localStorage.getItem("password");
+
+      if(user === savedUser && pass === savedPass) {
+        localStorage.setItem("isLoggedIn", "true");
+        window.location.href = "welcome.html";
+      } else {
+        document.getElementById("message").style.color = "red";
+        document.getElementById("message").innerText = "Invalid credentials!";
+      }
+    }
+  </script>
+</body>
+</html>
