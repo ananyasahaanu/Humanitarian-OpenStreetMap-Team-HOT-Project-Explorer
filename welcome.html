@@ -4,16 +4,18 @@
 <meta charset="UTF-8">
 <title>Welcome To My World</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 <style>
   * {margin:0; padding:0; box-sizing:border-box; font-family: 'Poppins', sans-serif;}
   body {
-    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     background: linear-gradient(135deg,#667eea,#764ba2);
     color: #fff;
     overflow-x: hidden;
+    padding-bottom: 50px;
   }
 
   /* Header */
@@ -81,6 +83,8 @@
     color: #fff;
     font-size: 1rem;
     cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
     transition: transform 0.2s, background 0.3s;
   }
 
@@ -89,7 +93,29 @@
     background: #e73370;
   }
 
-  /* Footer quote */
+  /* Map Section */
+  .map-section {
+    margin-top: 50px;
+    width: 90%;
+    max-width: 1200px;
+    background: rgba(255,255,255,0.1);
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+  }
+
+  .map-section h2 {
+    margin-bottom: 15px;
+    font-size: 2rem;
+    color: #ffd700;
+  }
+
+  #map {
+    height: 500px;
+    border-radius: 15px;
+  }
+
+  /* Footer */
   footer {
     margin-top: 50px;
     font-style: italic;
@@ -141,26 +167,35 @@
     <h2>Total Explorers</h2>
     <div class="number" id="explorers">0</div>
     <p>People who have joined our journey of discovery.</p>
-    <button class="btn">Join Now</button>
+    <a href="explorers.html" class="btn">Join Now</a>
   </div>
   <div class="card">
     <h2>Projects Completed</h2>
     <div class="number" id="projects">0</div>
     <p>We have completed amazing missions and adventures.</p>
-    <button class="btn">Explore</button>
+    <a href="projects.html" class="btn">Explore</a>
   </div>
   <div class="card">
     <h2>Milestones Reached</h2>
     <div class="number" id="milestones">0</div>
     <p>Celebrating every achievement and milestone with joy.</p>
-    <button class="btn">Celebrate</button>
+    <a href="milestones.html" class="btn">Celebrate</a>
   </div>
+</div>
+
+<!-- Map Section -->
+<div class="map-section">
+  <h2>Humanitarian Mapping Works</h2>
+  <p>Explore global humanitarian mapping initiatives and see how our projects make an impact worldwide.</p>
+  <div id="map"></div>
 </div>
 
 <footer>"Adventure is out there, and so is knowledge."</footer>
 
 <div class="confetti" id="confetti"></div>
 
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script>
   // Animate numbers
   function animateNumber(id, target) {
@@ -192,7 +227,26 @@
     }
   }
   createConfetti();
-</script>
 
+  // Initialize Leaflet map
+  const map = L.map('map').setView([20, 0], 2); // World view
+
+  // Add OpenStreetMap tiles
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+
+  // Example markers for Humanitarian Projects
+  const markers = [
+    { coords: [23.8103, 90.4125], text: "Dhaka, Bangladesh - Community Mapping Project" },
+    { coords: [48.8566, 2.3522], text: "Paris, France - Urban Growth Monitoring" },
+    { coords: [-1.2921, 36.8219], text: "Nairobi, Kenya - Health Facilities Mapping" },
+    { coords: [34.0522, -118.2437], text: "Los Angeles, USA - Disaster Relief Mapping" }
+  ];
+
+  markers.forEach(marker => {
+    L.marker(marker.coords).addTo(map).bindPopup(`<b>${marker.text}</b>`);
+  });
+</script>
 </body>
 </html>
