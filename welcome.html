@@ -1,197 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Welcome To My World</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-<style>
-  * {margin:0; padding:0; box-sizing:border-box; font-family: 'Poppins', sans-serif;}
-  body {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: linear-gradient(135deg,#667eea,#764ba2);
-    color: #fff;
-    overflow-x: hidden;
-  }
+  <meta charset="UTF-8">
+  <title>Welcome To My World</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
-  /* Header */
-  header {
-    margin-top: 40px;
-    font-size: 3rem;
-    font-weight: 600;
-    text-align: center;
-    text-shadow: 2px 2px 15px rgba(0,0,0,0.3);
-    animation: fadeInDown 1s ease forwards;
-  }
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
 
-  /* Cards */
-  .cards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 25px;
-    margin-top: 50px;
-    width: 90%;
-    max-width: 1200px;
-  }
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
-  .card {
-    background: rgba(255,255,255,0.15);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    padding: 30px;
-    width: 280px;
-    text-align: center;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
+  <style>
+    * {margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif;}
+    body {
+      background: linear-gradient(135deg,#667eea,#764ba2);
+      color: white;
+      min-height: 100vh;
+      overflow-x: hidden;
+      text-align: center;
+    }
+    header {
+      padding: 20px;
+      font-size: 2rem;
+      font-weight: bold;
+      position: relative;
+    }
+    /* Sign Out button */
+    .signout-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: #ff4081;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      color: white;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    .signout-btn:hover {background: #e73370;}
 
-  .card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.3);
-  }
+    /* Cards */
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+      margin-top: 30px;
+      padding: 0 15px;
+    }
+    .card {
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 20px;
+      width: 250px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      transition: transform 0.3s;
+    }
+    .card:hover {transform: translateY(-5px);}
+    .card h2 {margin-bottom: 10px;}
+    .btn {
+      margin-top: 10px;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 10px;
+      background: #ff4081;
+      color: white;
+      cursor: pointer;
+    }
+    .btn:hover {background: #e73370;}
 
-  .card h2 {
-    font-size: 1.5rem;
-    margin-bottom: 15px;
-  }
-
-  .card p {
-    font-size: 1rem;
-    line-height: 1.4;
-  }
-
-  /* Animated numbers */
-  .number {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin: 10px 0;
-    color: #ffd700;
-  }
-
-  /* Buttons */
-  .btn {
-    margin-top: 20px;
-    padding: 12px 25px;
-    border: none;
-    border-radius: 15px;
-    background: #ff4081;
-    color: #fff;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: transform 0.2s, background 0.3s;
-  }
-
-  .btn:hover {
-    transform: scale(1.05);
-    background: #e73370;
-  }
-
-  /* Footer quote */
-  footer {
-    margin-top: 50px;
-    font-style: italic;
-    font-size: 1.2rem;
-    text-align: center;
-    opacity: 0.8;
-    animation: fadeInUp 1s ease forwards;
-  }
-
-  /* Animations */
-  @keyframes fadeInDown {
-    from {opacity: 0; transform: translateY(-30px);}
-    to {opacity: 1; transform: translateY(0);}
-  }
-
-  @keyframes fadeInUp {
-    from {opacity: 0; transform: translateY(30px);}
-    to {opacity: 1; transform: translateY(0);}
-  }
-
-  /* Confetti */
-  .confetti {
-    position: fixed;
-    top:0; left:0; width:100%; height:100%; pointer-events:none;
-    overflow:hidden;
-  }
-
-  .confetti-piece {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    background-color: #ffd700;
-    opacity: 0.8;
-    animation: fall 3s linear infinite;
-  }
-
-  @keyframes fall {
-    0% { transform: translateY(-10px) rotate(0deg);}
-    100% { transform: translateY(100vh) rotate(360deg);}
-  }
-</style>
+    /* Map Styling */
+    #map {
+      height: 400px;
+      width: 90%;
+      margin: 30px auto;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    }
+  </style>
 </head>
 <body>
 
-<header>Welcome To My World 🌍</header>
+<header>
+  Welcome To My World 🌍
+  <button class="signout-btn" onclick="signOut()">Sign Out</button>
+</header>
 
+<!-- Cards -->
 <div class="cards">
   <div class="card">
     <h2>Total Explorers</h2>
-    <div class="number" id="explorers">0</div>
     <p>People who have joined our journey of discovery.</p>
-    <button class="btn">Join Now</button>
+    <button class="btn" onclick="window.location.href='explorers.html'">Join Now</button>
   </div>
   <div class="card">
     <h2>Projects Completed</h2>
-    <div class="number" id="projects">0</div>
     <p>We have completed amazing missions and adventures.</p>
-    <button class="btn">Explore</button>
+    <button class="btn" onclick="window.location.href='projects.html'">Explore</button>
   </div>
   <div class="card">
     <h2>Milestones Reached</h2>
-    <div class="number" id="milestones">0</div>
     <p>Celebrating every achievement and milestone with joy.</p>
-    <button class="btn">Celebrate</button>
+    <button class="btn" onclick="window.location.href='milestones.html'">Celebrate</button>
   </div>
 </div>
 
-<footer>"Adventure is out there, and so is knowledge."</footer>
-
-<div class="confetti" id="confetti"></div>
+<!-- Map -->
+<div id="map"></div>
 
 <script>
-  // Animate numbers
-  function animateNumber(id, target) {
-    let count = 0;
-    const step = target / 100;
-    const interval = setInterval(() => {
-      count += step;
-      if(count >= target) { count = target; clearInterval(interval); }
-      document.getElementById(id).innerText = Math.floor(count);
-    }, 20);
+  // Redirect to login if not signed in
+  const loggedInUser = localStorage.getItem('loggedInUser');
+  if (!loggedInUser) {
+    window.location.href = 'index.html';
   }
 
-  animateNumber('explorers', 1250);
-  animateNumber('projects', 48);
-  animateNumber('milestones', 96);
-
-  // Confetti animation
-  function createConfetti() {
-    const container = document.getElementById('confetti');
-    for(let i=0;i<50;i++){
-      const div = document.createElement('div');
-      div.className = 'confetti-piece';
-      div.style.left = Math.random()*100+'%';
-      div.style.backgroundColor = `hsl(${Math.random()*360}, 80%, 60%)`;
-      div.style.animationDuration = (2+Math.random()*3)+'s';
-      div.style.width = (5+Math.random()*10)+'px';
-      div.style.height = div.style.width;
-      container.appendChild(div);
-    }
+  // Sign out function
+  function signOut() {
+    localStorage.removeItem('loggedInUser');
+    window.location.href = 'index.html';
   }
-  createConfetti();
+
+  // Initialize Leaflet Map
+  const map = L.map('map').setView([20, 0], 2);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors'
+  }).addTo(map);
+
+  // Example marker
+  L.marker([20, 0]).addTo(map)
+    .bindPopup("<b>Humanitarian Mapping Works</b><br>Explore the world!")
+    .openPopup();
 </script>
 
 </body>
