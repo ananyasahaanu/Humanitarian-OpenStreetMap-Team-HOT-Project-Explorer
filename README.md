@@ -1,3 +1,4 @@
+
 # 🗺️ Humanitarian OpenStreetMap Team (HOT) Project Explorer
 
 ## 🌐 Website
@@ -8,45 +9,49 @@
 
 ## 📘 Project Overview
 
-The **HOT Project Explorer** is a dynamic, user-friendly web application designed to showcase humanitarian mapping projects, explorers, and milestones. Built with modern web technologies, it offers a visually appealing interface reminiscent of Apple's design aesthetics, ensuring an engaging user experience.
-
-With dedicated pages for **Projects**, **Explorers**, and **Milestones**, users can explore achievements, learn about notable contributors, and understand the impact of humanitarian mapping worldwide.
+The **HOT Project Explorer** is a dynamic, user-friendly web application designed to showcase and interact with humanitarian mapping projects. Users must **sign up and log in** to access the dashboard, ensuring a protected experience. Built with modern web technologies, it offers a visually appealing interface reminiscent of Apple’s design aesthetics, ensuring an engaging user experience.
 
 ---
 
 ## 🧩 Features
 
+* **Protected Access**: Users must sign up and log in to see the content.
 * **Responsive Design**: Optimized for desktop and mobile devices.
-* **Interactive Cards**: Displaying project statistics and details.
-* **Animated Counters**: Showcasing real-time data updates for explorers, projects, and milestones.
-* **Confetti Animation**: Celebratory effects to highlight achievements.
-* **Sign Out Functionality**: Secure session management on every page.
-* **Modern UI Elements**: Smooth hover effects, transitions, and visually consistent sections.
-* **Rich Content**: Informative pages with research, free images, and impact stories.
+* **Interactive Dashboard**: Shows total explorers, projects completed, and milestones.
+* **See More Buttons**: Navigate to detailed pages for Explorers, Projects, and Milestones.
+* **Animated Counters**: Dynamic counting for statistics.
+* **Confetti Animation**: Celebratory effect for user engagement.
+* **Floating Circles Animation**: Smooth moving background circles for aesthetic effect.
+* **Interactive Map**: Leaflet world map showing humanitarian mapping locations.
+* **Sign Out Functionality**: Clear session and redirect to login page.
 
 ---
 
 ## 🛠️ Technologies Used
 
-* **HTML5**: Structuring content for the web.
-* **CSS3**: Styling, gradients, animations, and responsive layouts.
-* **JavaScript**: Dynamic counters, Sign Out functionality, and page interactivity.
-* **GitHub Pages**: Hosting the application.
-* **Free Images**: Integrated from Pixabay, Unsplash, and Wikimedia Commons for visual storytelling.
+* **HTML5**: Structuring content
+* **CSS3**: Styling and animations
+* **JavaScript**: Interactivity, localStorage, animations, map
+* **Leaflet.js**: Interactive world map
+* **GitHub Pages**: Hosting
 
 ---
 
 ## 📁 Project Structure
+
+```
 /Humanitarian-OpenStreetMap-Team-HOT-Project-Explorer
 │
-├── index.html # Login / Signup page with username authentication
-├── welcome.html # Welcome dashboard with main statistics cards
-├── explorers.html # Detailed page about notable explorers and humanitarian mapping
-├── milestones.html # Detailed page highlighting milestones and achievements
-├── projects.html # Detailed page showcasing humanitarian mapping projects
-├── styles.css # Optional: CSS file if separated from HTML
-├── script.js # Optional: JavaScript file for counters, animations, and auth
-└── README.md # Project documentation
+├── index.html         # Login / Signup page
+├── welcome.html       # Main dashboard with cards, animations, and map
+├── explorers.html     # Detailed explorers info
+├── projects.html      # Detailed projects info
+├── milestones.html    # Detailed milestones info
+├── styles.css         # CSS file (if separated)
+├── script.js          # JavaScript file (if separated)
+├── README.md          # Project documentation
+└── LICENSE            # MIT License
+```
 
 ---
 
@@ -54,44 +59,80 @@ With dedicated pages for **Projects**, **Explorers**, and **Milestones**, users 
 
 1. **Clone the Repository**:
 
-   ```bash
-   git clone https://github.com/ananyasahaanu/Humanitarian-OpenStreetMap-Team-HOT-Project-Explorer.git
-   cd Humanitarian-OpenStreetMap-Team-HOT-Project-Explorer
+```bash
+git clone https://github.com/ananyasahaanu/Humanitarian-OpenStreetMap-Team-HOT-Project-Explorer.git
+cd Humanitarian-OpenStreetMap-Team-HOT-Project-Explorer
+```
 
-2. Open index.html in your preferred web browser to view the application.
+2. **Open `index.html`** in your preferred browser.
+3. **Sign Up** with a username and password.
+4. **Log In** to access the dashboard and explore content.
 
-3. Navigate between Projects, Explorers, and Milestones pages via the cards on the Welcome page.
-Note: For production environments, consider integrating secure backend authentication.
+---
 
-🧭 Purpose & Inspiration
+## 🔐 User Authentication
+
+* **Sign Up / Login**: Users must create an account to access content.
+* **LocalStorage**: Stores username and password (basic implementation).
+* **Sign Out**: Button clears session and redirects to login page.
+
+> ⚠️ Note: For production, a secure authentication backend is recommended.
+
+---
+
+## 🧭 Purpose & Inspiration
 
 This project aims to:
 
-Educate users about humanitarian mapping and its global impact.
+* **Educate** users about humanitarian mapping.
+* **Showcase** HOT’s projects and impact worldwide.
+* **Encourage Participation** in humanitarian mapping initiatives.
 
-Showcase projects, milestones, and notable explorers contributing to disaster relief and community development.
+The application combines learning, interactivity, and visual appeal to engage users with open mapping projects.
 
-Encourage participation in mapping efforts and open data initiatives.
+---
 
-Inspired by open mapping principles and collaborative volunteering, the HOT Project Explorer serves as both an informative and interactive platform for the humanitarian mapping community.
+## 📌 Future Enhancements
 
-📌 Future Enhancements
+* **Markers on Map**: Show explorers, projects, and milestones with popups.
+* **API Integration**: Fetch live data for projects and explorers.
+* **User Profiles**: Track contributions.
+* **Multilingual Support**: Expand global accessibility.
+* **Animations & Celebrations**: More interactive effects.
 
-Planned upgrades include:
+---
 
-API Integration: Fetch real-time project statistics and mapping data.
+## 📄 License
 
-User Profiles: Track personal contributions to projects and milestones.
+This project is licensed under the **MIT License**.
 
-Interactive Maps: Display project locations and areas using Leaflet or other mapping libraries.
+---
 
-Multilingual Support: Broaden accessibility to a global audience.
+## 📑 Lab Report (Summary)
 
-Enhanced Signup: Add password and email verification for secure login.
+**Project Title**: Humanitarian OpenStreetMap Team Project Explorer
+**Date**: 2025
+**Objective**: To design an interactive web application showcasing HOT’s humanitarian mapping projects with authentication, statistics, animations, and maps.
 
-📄 License
+**Procedure**:
 
-This project is licensed under the MIT License.
+1. Designed a **login/signup page** with username & password authentication.
+2. Implemented a **protected dashboard** (`welcome.html`) accessible only after login.
+3. Created **cards** showing explorers, projects, and milestones with animated counters.
+4. Added **“See More” buttons** to navigate to detailed pages.
+5. Integrated **Leaflet.js world map** with interactive zoom & pan.
+6. Applied **animations**: moving circles, confetti, hover effects for cards/buttons.
+7. Added **sign-out button** to clear session and redirect to login.
 
+**Observations**:
 
+* Login/signup mechanism works and protects content.
+* Animated counters improve user engagement.
+* Map visualization enhances global awareness of HOT projects.
+* Confetti and floating animations add fun aesthetic appeal.
+
+**Conclusion**:
+The HOT Project Explorer demonstrates a secure, interactive, and visually appealing platform for exploring humanitarian mapping projects, providing educational value and encouraging participation.
+
+---
 
