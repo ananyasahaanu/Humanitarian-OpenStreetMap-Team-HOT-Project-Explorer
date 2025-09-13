@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Projects</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
       background: linear-gradient(135deg,#667eea,#764ba2);
@@ -10,6 +11,7 @@
       font-family: 'Poppins', sans-serif;
       text-align: center;
       padding: 20px;
+      position: relative;
     }
     .signout-btn {
       position: absolute;
@@ -24,16 +26,90 @@
       font-size: 1rem;
     }
     .signout-btn:hover {background: #e73370;}
+
+    img.project-photo {
+      max-width: 80%;
+      height: auto;
+      border-radius: 10px;
+      margin: 20px auto;
+    }
+
+    .section {
+      margin: 30px 0;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
+    }
+    .section h2 {
+      margin-bottom: 15px;
+      font-size: 1.8rem;
+      color: #ffd700;
+    }
+    .section p {
+      margin-bottom: 12px;
+      line-height: 1.6;
+    }
+    .project-card {
+      background: rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>Our Projects</h1>
+    <h1>Our Humanitarian Projects</h1>
     <button class="signout-btn" onclick="signOut()">Sign Out</button>
   </header>
 
-  <p>Explore the amazing humanitarian mapping projects we have completed!</p>
+  <p>Explore the amazing humanitarian mapping projects we have completed around the world!</p>
+
+  <!-- Example Image -->
+  <img class="project-photo" src="https://cdn.pixabay.com/photo/2016/11/19/17/59/mountains-1834792_1280.jpg" alt="Mapping Project">
+
+  <div class="section">
+    <h2>About Our Projects</h2>
+    <p>Our projects aim to provide accurate geographic information to support disaster response, public health planning, and sustainable development. Each project involves volunteers from around the globe contributing data, tracing maps, and validating information on OpenStreetMap and similar platforms.</p>
+    <p>Through collaboration, technology, and dedication, our projects ensure that communities, aid agencies, and governments have access to the critical data they need to make informed decisions during crises.</p>
+  </div>
+
+  <div class="section">
+    <h2>Highlighted Projects</h2>
+
+    <div class="project-card">
+      <h3>Haiti Earthquake Response</h3>
+      <p>After the 2010 Haiti earthquake, volunteers mapped roads, buildings, and key facilities to support humanitarian response. This data helped rescue teams reach affected communities faster and more efficiently.</p>
+    </div>
+
+    <div class="project-card">
+      <h3>Flood Risk Mapping in Bangladesh</h3>
+      <p>Through satellite imagery and local input, our team mapped flood-prone regions, helping local authorities and NGOs plan mitigation efforts and disaster preparedness programs.</p>
+    </div>
+
+    <div class="project-card">
+      <h3>Health Facilities Mapping in Africa</h3>
+      <p>Identifying hospitals, clinics, and vaccination centers in remote regions improves emergency response and health planning. Volunteers contributed over 10,000 building traces across several countries.</p>
+    </div>
+
+    <div class="project-card">
+      <h3>Community Development Projects</h3>
+      <p>Mapping schools, water sources, and roads in underserved areas supports sustainable development initiatives, education, and accessibility for local communities.</p>
+    </div>
+
+    <div class="project-card">
+      <h3>COVID-19 Response Mapping</h3>
+      <p>During the pandemic, volunteers mapped hospitals, testing centers, and quarantine facilities to aid public health responses and improve accessibility for those in need.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Join Our Projects</h2>
+    <p>Every volunteer contribution counts! Whether tracing buildings, verifying roads, or helping coordinate local data, your efforts directly impact the effectiveness of humanitarian aid worldwide.</p>
+    <p>Learn more and participate through the Humanitarian OpenStreetMap Team or other community mapping initiatives.</p>
+  </div>
 
   <script>
     const loggedInUser = localStorage.getItem('loggedInUser');
