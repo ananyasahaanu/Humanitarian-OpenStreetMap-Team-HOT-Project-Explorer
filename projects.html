@@ -2,54 +2,49 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Projects Completed</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <title>Projects</title>
   <style>
     body {
-      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      background: linear-gradient(135deg,#667eea,#764ba2);
       color: white;
       font-family: 'Poppins', sans-serif;
-      padding: 30px;
-      line-height: 1.7;
-    }
-    h1 {
       text-align: center;
-      margin-bottom: 30px;
+      padding: 20px;
     }
-    ul {
-      margin-left: 20px;
-    }
-    li {
-      margin-bottom: 15px;
-    }
-    .back-btn {
-      display: inline-block;
+    .signout-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
       background: #ff4081;
-      color: #fff;
-      padding: 12px 20px;
+      border: none;
+      padding: 10px 20px;
       border-radius: 10px;
-      text-decoration: none;
+      color: white;
+      cursor: pointer;
+      font-size: 1rem;
     }
-    .back-btn:hover {
-      background: #e73370;
-    }
+    .signout-btn:hover {background: #e73370;}
   </style>
 </head>
 <body>
-  <h1>Projects Completed</h1>
-  <p>Over the years, we have completed a variety of projects that aim to make the world a better place. These projects range from humanitarian mapping efforts to advanced technological research initiatives.</p>
-  
-  <h2>Our Key Projects</h2>
-  <ul>
-    <li><strong>Project Horizon:</strong> Mapping disaster-affected areas to provide accurate relief data.</li>
-    <li><strong>EcoMap:</strong> Identifying and protecting endangered ecosystems through open data.</li>
-    <li><strong>Urban Growth Monitor:</strong> Tracking rapid urbanization and its environmental impacts.</li>
-    <li><strong>Safe Streets:</strong> Enhancing pedestrian and cyclist safety through better infrastructure data.</li>
-    <li><strong>HealthReach:</strong> Mapping remote health facilities to improve healthcare accessibility.</li>
-  </ul>
 
-  <p>These projects are just the beginning. Our team constantly works to innovate, adapt, and create meaningful impact through data-driven exploration.</p>
+  <header>
+    <h1>Our Projects</h1>
+    <button class="signout-btn" onclick="signOut()">Sign Out</button>
+  </header>
 
-  <a href="index.html" class="back-btn">← Back to Home</a>
+  <p>Explore the amazing humanitarian mapping projects we have completed!</p>
+
+  <script>
+    const loggedInUser = localStorage.getItem('loggedInUser');
+    if (!loggedInUser) {
+      window.location.href = 'index.html';
+    }
+
+    function signOut() {
+      localStorage.removeItem('loggedInUser');
+      window.location.href = 'index.html';
+    }
+  </script>
 </body>
 </html>
