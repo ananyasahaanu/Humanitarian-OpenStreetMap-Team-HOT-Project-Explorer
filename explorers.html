@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Explorers</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
       background: linear-gradient(135deg,#667eea,#764ba2);
@@ -10,6 +11,7 @@
       font-family: 'Poppins', sans-serif;
       text-align: center;
       padding: 20px;
+      position: relative;
     }
     .signout-btn {
       position: absolute;
@@ -24,6 +26,34 @@
       font-size: 1rem;
     }
     .signout-btn:hover {background: #e73370;}
+    img.explorer-photo {
+      max-width: 80%;
+      height: auto;
+      border-radius: 10px;
+      margin: 20px auto;
+    }
+    .section {
+      margin: 30px 0;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
+    }
+    .section h2 {
+      margin-bottom: 15px;
+      font-size: 1.8rem;
+      color: #ffd700;
+    }
+    .section p {
+      margin-bottom: 12px;
+      line-height: 1.6;
+    }
+    .explorer-card {
+      background: rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
   </style>
 </head>
 <body>
@@ -33,7 +63,45 @@
     <button class="signout-btn" onclick="signOut()">Sign Out</button>
   </header>
 
-  <p>Here you will find details about our amazing explorers around the world.</p>
+  <p>Here you will find details about our amazing explorers around the world and their contributions to humanitarian mapping and exploration.</p>
+
+  <!-- Example Image -->
+  <img class="explorer-photo" src="https://cdn.pixabay.com/photo/2017/07/31/11/23/nature-2557627_1280.jpg" alt="Explorer in nature">
+
+  <div class="section">
+    <h2>What is Humanitarian Mapping?</h2>
+    <p>Humanitarian mapping uses geography, satellite imagery, field surveys and volunteer contributions to create maps that aid in disaster response, planning, and social development. Making geographic data open and accessible helps communities prepare, respond, and recover from crises.</p>
+    <p>Volunteers from around the world contribute through platforms like OpenStreetMap and Missing Maps to fill gaps in data (roads, buildings, health facilities) especially in under-resourced or disaster-affected regions. Open tools and open data are essential to this effort. :contentReference[oaicite:12]{index=12}</p>
+  </div>
+
+  <div class="section">
+    <h2>Notable Explorers & Humanitarian Mappers</h2>
+
+    <div class="explorer-card">
+      <h3>Patrick Meier</h3>
+      <p>Patrick Meier is an innovator in crisis mapping. He co-founded the concept of using online maps, social media and crowdsourced data to rapidly respond during natural disasters. During the 2010 Haiti earthquake, he helped coordinate relief by collecting information from many digital sources. :contentReference[oaicite:13]{index=13}</p>
+    </div>
+
+    <div class="explorer-card">
+      <h3>Kingsley Holgate</h3>
+      <p>A South African explorer and humanitarian whose expeditions have included distributing mosquito nets, mobile libraries, health and education support in remote communities. Holgate’s work combines adventure with social impact. :contentReference[oaicite:14]{index=14}</p>
+    </div>
+
+    <div class="explorer-card">
+      <h3>Fridtjof Nansen</h3>
+      <p>A pioneer of polar exploration, Nansen also made important humanitarian contributions. After his explorations of Greenland, he became a prominent figure in refugee relief and introduced the "Nansen Passport" to help stateless people. :contentReference[oaicite:15]{index=15}</p>
+    </div>
+
+    <div class="explorer-card">
+      <h3>Gertrude “Truda” Benham</h3>
+      <p>Truda Benham traveled extensively in the early 1900s, often alone. She climbed mountains on nearly every continent, recorded maps and sketches, and contributed to knowledge of remote regions, often under very difficult conditions. :contentReference[oaicite:16]{index=16}</p>
+    </div>
+
+    <div class="explorer-card">
+      <h3>Modern & Volunteer Mapping</h3>
+      <p>Today, mapping is not only for professional explorers. Ordinary people, students, and local community members can help. Platforms like HOT, MapAction, and open-data projects allow volunteers to map their own communities, identify risks (flood, earthquake, disease), and help in disaster-response efforts. :contentReference[oaicite:17]{index=17}</p>
+    </div>
+  </div>
 
   <script>
     const loggedInUser = localStorage.getItem('loggedInUser');
@@ -46,5 +114,6 @@
       window.location.href = 'index.html';
     }
   </script>
+
 </body>
 </html>
