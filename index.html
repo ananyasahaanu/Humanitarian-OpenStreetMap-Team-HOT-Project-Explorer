@@ -5,83 +5,139 @@
   <title>Login / Signup</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    * {margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif;}
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
     body {
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
-      background: linear-gradient(135deg,#667eea,#764ba2);
+      background: linear-gradient(135deg, #667eea, #764ba2);
       color: white;
     }
+
     .container {
-      background: rgba(255,255,255,0.15);
+      background: rgba(255, 255, 255, 0.15);
       backdrop-filter: blur(10px);
-      padding: 30px;
+      padding: 30px 25px;
       border-radius: 15px;
       text-align: center;
-      width: 300px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      width: 350px;
+      box-shadow: 0 0 25px rgba(0,0,0,0.3);
     }
-    h2 {margin-bottom: 20px;}
+
+    h2 {
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+      font-weight: 600;
+    }
+
     input {
       width: 100%;
-      padding: 10px;
+      padding: 12px;
       margin: 10px 0;
       border: none;
       border-radius: 8px;
       outline: none;
+      font-size: 1rem;
     }
+
+    input[type="password"] {
+      letter-spacing: 2px;
+    }
+
     button {
-      width: 100%;
-      padding: 10px;
+      width: 48%;
+      padding: 12px;
+      margin-top: 15px;
       background: #ff4081;
       border: none;
       color: white;
       font-size: 1rem;
+      font-weight: 500;
       border-radius: 8px;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: background 0.3s, transform 0.2s;
     }
-    button:hover {background: #e73370;}
+
+    button:hover {
+      background: #e73370;
+      transform: scale(1.03);
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .error {
+      color: #ffcccc;
+      margin-top: 8px;
+      font-size: 0.9rem;
+    }
   </style>
 </head>
 <body>
 
 <div class="container">
   <h2>Welcome</h2>
+
   <input type="text" id="username" placeholder="Enter Username" required>
-  <button onclick="signup()">Sign Up</button>
-  <button onclick="login()">Login</button>
+  <input type="password" id="password" placeholder="Enter Password" required>
+
+  <div class="buttons">
+    <button onclick="signup()">Sign Up</button>
+    <button onclick="login()">Login</button>
+  </div>
+
+  <div class="error" id="error"></div>
 </div>
 
 <script>
+  // Signup function
   function signup() {
     const username = document.getElementById('username').value.trim();
-    if(username === '') {
-      alert('Please enter a username to sign up.');
+    const password = document.getElementById('password').value.trim();
+    const error = document.getElementById('error');
+
+    if(username === '' || password === '') {
+      error.textContent = "Username and Password are required!";
       return;
     }
-    // Save username to localStorage
+
+    // Save user data in localStorage
     localStorage.setItem('loggedInUser', username);
-    alert('Account created successfully!');
+    localStorage.setItem('userPassword', password);
+
+    alert('Account created successfully! You can now log in.');
+    error.textContent = '';
     window.location.href = 'welcome.html';
   }
 
+  // Login function
   function login() {
     const username = document.getElementById('username').value.trim();
-    const storedUser = localStorage.getItem('loggedInUser');
+    const password = document.getElementById('password').value.trim();
+    const error = document.getElementById('error');
 
-    if(username === '') {
-      alert('Please enter your username.');
+    const storedUser = localStorage.getItem('loggedInUser');
+    const storedPass = localStorage.getItem('userPassword');
+
+    if(username === '' || password === '') {
+      error.textContent = "Username and Password are required!";
       return;
     }
 
-    if(username === storedUser) {
+    if(username === storedUser && password === storedPass) {
       alert('Login successful!');
+      error.textContent = '';
       window.location.href = 'welcome.html';
     } else {
-      alert('No account found. Please sign up first.');
+      error.textContent = "Invalid username or password!";
     }
   }
 </script>
