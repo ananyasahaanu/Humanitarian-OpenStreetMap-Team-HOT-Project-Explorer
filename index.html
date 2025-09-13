@@ -2,18 +2,18 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Welcome To My World</title>
+<title>Login / Signup - HOT Explorer</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 <style>
   * {margin:0; padding:0; box-sizing:border-box; font-family: 'Poppins', sans-serif;}
   body {
     min-height: 100vh;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
     background: linear-gradient(135deg,#667eea,#764ba2);
     color: #fff;
-    overflow-x: hidden;
+    overflow: hidden;
     position: relative;
   }
 
@@ -28,103 +28,45 @@
   .circle:nth-child(2){width:150px;height:150px;top:70%;left:30%;background:#ff4081;animation-duration:30s;}
   .circle:nth-child(3){width:80px;height:80px;top:40%;left:80%;background:#00ffff;animation-duration:22s;}
   .circle:nth-child(4){width:120px;height:120px;top:10%;left:50%;background:#ff8000;animation-duration:28s;}
-
   @keyframes float {
     0% { transform: translateY(0) translateX(0);}
     50% { transform: translateY(50px) translateX(-30px);}
     100% { transform: translateY(0) translateX(0);}
   }
 
-  /* Header */
-  header {
-    margin-top: 40px;
-    font-size: 3rem;
-    font-weight: 600;
-    text-align: center;
-    text-shadow: 2px 2px 15px rgba(0,0,0,0.3);
-    animation: fadeInDown 1s ease forwards;
-    z-index: 10;
-    position: relative;
-  }
-
-  /* Cards */
-  .cards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 25px;
-    margin-top: 50px;
-    width: 90%;
-    max-width: 1200px;
-    position: relative;
-    z-index: 10;
-  }
-
-  .card {
-    background: rgba(255,255,255,0.15);
+  /* Container */
+  .container {
+    background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(10px);
-    border-radius: 20px;
-    padding: 30px;
-    width: 280px;
-    text-align: center;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-    transition: transform 0.3s, box-shadow 0.3s;
-    cursor: pointer;
-  }
-
-  .card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.3);
-  }
-
-  .card h2 { font-size: 1.5rem; margin-bottom: 15px; }
-  .card p { font-size: 1rem; line-height: 1.4; }
-  .number { font-size: 2.5rem; font-weight: 700; margin: 10px 0; color: #ffd700; }
-
-  /* Buttons */
-  .btn {
-    margin-top: 20px;
-    padding: 12px 25px;
-    border: none;
+    padding: 30px 25px;
     border-radius: 15px;
-    background: #ff4081;
-    color: #fff;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: transform 0.2s, background 0.3s;
-  }
-  .btn:hover { transform: scale(1.05); background: #e73370; }
-
-  /* Footer */
-  footer {
-    margin-top: 50px;
-    font-style: italic;
-    font-size: 1.2rem;
     text-align: center;
-    opacity: 0.8;
-    animation: fadeInUp 1s ease forwards;
-    position: relative;
+    width: 350px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.3);
     z-index: 10;
+    position: relative;
   }
 
-  /* Animations */
-  @keyframes fadeInDown { from {opacity:0; transform:translateY(-30px);} to {opacity:1; transform:translateY(0);} }
-  @keyframes fadeInUp { from {opacity:0; transform:translateY(30px);} to {opacity:1; transform:translateY(0);} }
+  h2 {margin-bottom: 20px; font-size: 1.8rem; font-weight: 600;}
+  input {width: 100%; padding: 12px; margin: 10px 0; border: none; border-radius: 8px; outline: none; font-size: 1rem;}
+  input[type="password"] {letter-spacing: 2px;}
+
+  .buttons {display:flex; justify-content:space-between; gap:10px;}
+  button {width:48%; padding:12px; margin-top:15px; background:#ff4081; border:none; color:white; font-size:1rem; font-weight:500; border-radius:8px; cursor:pointer; transition: background 0.3s, transform 0.2s;}
+  button:hover {background:#e73370; transform:scale(1.03);}
+  .error {color:#ffcccc; margin-top:8px; font-size:0.9rem;}
+
+  /* Dashboard Cards */
+  .cards {display:none; flex-wrap:wrap; justify-content:center; gap:25px; margin-top:30px; width:90%; max-width:1200px; position: relative; z-index:10;}
+  .card {background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); border-radius: 20px; padding: 30px; width: 280px; text-align: center; box-shadow: 0 8px 25px rgba(0,0,0,0.2); transition: transform 0.3s, box-shadow 0.3s; cursor:pointer;}
+  .card:hover {transform: translateY(-10px); box-shadow:0 12px 30px rgba(0,0,0,0.3);}
+  .card h2 {font-size: 1.5rem; margin-bottom: 15px;}
+  .card p {font-size: 1rem; line-height: 1.4;}
+  .number {font-size:2.5rem; font-weight:700; margin:10px 0; color:#ffd700;}
 
   /* Confetti */
-  .confetti-piece {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    opacity: 0.9;
-    z-index: 5;
-    animation: fall linear infinite;
-  }
-
-  @keyframes fall {
-    0% { transform: translateY(-10px) rotate(0deg);}
-    100% { transform: translateY(100vh) rotate(360deg);}
-  }
+  .confetti-piece {position:absolute; width:10px; height:10px; opacity:0.9; z-index:5; animation: fall linear infinite;}
+  @keyframes fall {0%{transform:translateY(-10px) rotate(0deg);} 100%{transform:translateY(100vh) rotate(360deg);}}
 </style>
 </head>
 <body>
@@ -134,9 +76,18 @@
 <div class="circle"></div>
 <div class="circle"></div>
 
-<header>Welcome To My World 🌍</header>
+<div class="container" id="loginContainer">
+  <h2>Welcome</h2>
+  <input type="text" id="username" placeholder="Enter Username" required>
+  <input type="password" id="password" placeholder="Enter Password" required>
+  <div class="buttons">
+    <button onclick="signup()">Sign Up</button>
+    <button onclick="login()">Login</button>
+  </div>
+  <div class="error" id="error"></div>
+</div>
 
-<div class="cards">
+<div class="cards" id="dashboard">
   <div class="card" onclick="window.location.href='explorers.html'">
     <h2>Total Explorers</h2>
     <div class="number" id="explorers">0</div>
@@ -157,40 +108,90 @@
   </div>
 </div>
 
-<footer>"Adventure is out there, and so is knowledge."</footer>
-
 <script>
-  const loggedInUser = localStorage.getItem('loggedInUser');
-  if (!loggedInUser) { window.location.href = 'index.html'; }
+const loginContainer = document.getElementById('loginContainer');
+const dashboard = document.getElementById('dashboard');
+const loggedInUser = localStorage.getItem('loggedInUser');
 
-  // Animate numbers
-  function animateNumber(id, target) {
-    let count = 0;
-    const step = target / 100;
-    const interval = setInterval(() => {
-      count += step;
-      if(count >= target) { count = target; clearInterval(interval); }
-      document.getElementById(id).innerText = Math.floor(count);
-    }, 20);
-  }
-  animateNumber('explorers', 1250);
-  animateNumber('projects', 48);
-  animateNumber('milestones', 96);
+// If already logged in, show dashboard directly
+if(loggedInUser) showDashboard();
 
-  // Continuous confetti
-  function createConfetti() {
-    for(let i=0;i<100;i++){
-      const div = document.createElement('div');
-      div.className = 'confetti-piece';
-      div.style.left = Math.random()*100+'%';
-      div.style.backgroundColor = `hsl(${Math.random()*360}, 80%, 60%)`;
-      div.style.width = (5+Math.random()*10)+'px';
-      div.style.height = div.style.width;
-      div.style.animationDuration = (2+Math.random()*3)+'s';
-      document.body.appendChild(div);
-    }
+// Signup function
+function signup() {
+  const username = document.getElementById('username').value.trim();
+  const password = document.getElementById('password').value.trim();
+  const error = document.getElementById('error');
+  if(!username || !password){ error.textContent="Username and Password required!"; return; }
+
+  localStorage.setItem('loggedInUser', username);
+  localStorage.setItem('userPassword', password);
+  error.textContent="";
+  celebrate();
+  setTimeout(showDashboard, 1000);
+}
+
+// Login function
+function login() {
+  const username = document.getElementById('username').value.trim();
+  const password = document.getElementById('password').value.trim();
+  const storedUser = localStorage.getItem('loggedInUser');
+  const storedPass = localStorage.getItem('userPassword');
+  const error = document.getElementById('error');
+
+  if(!username || !password){ error.textContent="Username and Password required!"; return; }
+
+  if(username===storedUser && password===storedPass){
+    error.textContent="";
+    celebrate();
+    setTimeout(showDashboard, 1000);
+  } else {
+    error.textContent="Invalid username or password!";
   }
+}
+
+// Show dashboard after login/signup
+function showDashboard(){
+  loginContainer.style.display='none';
+  dashboard.style.display='flex';
+  animateNumber('explorers',1250);
+  animateNumber('projects',48);
+  animateNumber('milestones',96);
   createConfetti();
+}
+
+// Animate numbers
+function animateNumber(id,target){
+  let count=0;
+  const step=target/100;
+  const interval=setInterval(()=>{
+    count+=step;
+    if(count>=target){count=target; clearInterval(interval);}
+    document.getElementById(id).innerText=Math.floor(count);
+  },20);
+}
+
+// Continuous confetti
+function createConfetti(){
+  for(let i=0;i<100;i++){
+    const div=document.createElement('div');
+    div.className='confetti-piece';
+    div.style.left=Math.random()*100+'%';
+    div.style.backgroundColor=`hsl(${Math.random()*360}, 80%, 60%)`;
+    div.style.width=(5+Math.random()*10)+'px';
+    div.style.height=div.style.width;
+    div.style.animationDuration=(2+Math.random()*3)+'s';
+    document.body.appendChild(div);
+  }
+}
+
+// Celebrate on login/signup
+function celebrate(){
+  createConfetti();
+  setTimeout(()=>{
+    const pieces=document.querySelectorAll('.confetti-piece');
+    pieces.forEach(p=>p.remove());
+  },4000);
+}
 </script>
 
 </body>
