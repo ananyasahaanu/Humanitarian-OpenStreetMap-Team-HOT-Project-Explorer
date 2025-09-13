@@ -37,4 +37,61 @@ With dedicated pages for **Projects**, **Explorers**, and **Milestones**, users 
 ---
 
 ## 📁 Project Structure
+/Humanitarian-OpenStreetMap-Team-HOT-Project-Explorer
+│
+├── index.html # Login / Signup page with username authentication
+├── welcome.html # Welcome dashboard with main statistics cards
+├── explorers.html # Detailed page about notable explorers and humanitarian mapping
+├── milestones.html # Detailed page highlighting milestones and achievements
+├── projects.html # Detailed page showcasing humanitarian mapping projects
+├── styles.css # Optional: CSS file if separated from HTML
+├── script.js # Optional: JavaScript file for counters, animations, and auth
+└── README.md # Project documentation
+
+---
+
+## 🚀 Getting Started
+
+1. **Clone the Repository**:
+
+   ```bash
+   git clone https://github.com/ananyasahaanu/Humanitarian-OpenStreetMap-Team-HOT-Project-Explorer.git
+   cd Humanitarian-OpenStreetMap-Team-HOT-Project-Explorer
+
+2. Open index.html in your preferred web browser to view the application.
+
+3. Navigate between Projects, Explorers, and Milestones pages via the cards on the Welcome page.
+Note: For production environments, consider integrating secure backend authentication.
+
+🧭 Purpose & Inspiration
+
+This project aims to:
+
+Educate users about humanitarian mapping and its global impact.
+
+Showcase projects, milestones, and notable explorers contributing to disaster relief and community development.
+
+Encourage participation in mapping efforts and open data initiatives.
+
+Inspired by open mapping principles and collaborative volunteering, the HOT Project Explorer serves as both an informative and interactive platform for the humanitarian mapping community.
+
+📌 Future Enhancements
+
+Planned upgrades include:
+
+API Integration: Fetch real-time project statistics and mapping data.
+
+User Profiles: Track personal contributions to projects and milestones.
+
+Interactive Maps: Display project locations and areas using Leaflet or other mapping libraries.
+
+Multilingual Support: Broaden accessibility to a global audience.
+
+Enhanced Signup: Add password and email verification for secure login.
+
+📄 License
+
+This project is licensed under the MIT License.
+
+
 
