@@ -1,106 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Login / Signup</title>
-  <style>
-    /* Reset */
-    * {margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', sans-serif;}
+<meta charset="UTF-8">
+<title>Welcome To My World</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  * {margin:0; padding:0; box-sizing:border-box; font-family: 'Poppins', sans-serif;}
+  body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(135deg,#667eea,#764ba2);
+    color: #fff;
+    overflow-x: hidden;
+  }
 
-    body {
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(135deg, #667eea, #764ba2);
-    }
+  /* Header */
+  header {
+    margin-top: 40px;
+    font-size: 3rem;
+    font-weight: 600;
+    text-align: center;
+    text-shadow: 2px 2px 15px rgba(0,0,0,0.3);
+    animation: fadeInDown 1s ease forwards;
+  }
 
-    .card {
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(10px);
-      border-radius: 20px;
-      padding: 40px 30px;
-      width: 350px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-      text-align: center;
-      color: white;
-    }
+  /* Cards */
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 50px;
+    width: 90%;
+    max-width: 1200px;
+  }
 
-    .card h2 {
-      margin-bottom: 20px;
-      font-size: 1.8rem;
-      font-weight: 600;
-    }
+  .card {
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 30px;
+    width: 280px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
 
-    input {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      border: none;
-      border-radius: 10px;
-      outline: none;
-      font-size: 1rem;
-    }
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+  }
 
-    .btn {
-      width: 100%;
-      padding: 12px;
-      margin: 12px 0;
-      border: none;
-      border-radius: 10px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: 0.3s;
-    }
+  .card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
 
-    .btn.signup { background: #4ade80; color: #fff; }
-    .btn.signup:hover { background: #22c55e; }
-    .btn.login { background: #60a5fa; color: #fff; }
-    .btn.login:hover { background: #2563eb; }
+  .card p {
+    font-size: 1rem;
+    line-height: 1.4;
+  }
 
-    #message { margin-top: 10px; font-size: 0.9rem; }
-  </style>
+  /* Animated numbers */
+  .number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 10px 0;
+    color: #ffd700;
+  }
+
+  /* Buttons */
+  .btn {
+    margin-top: 20px;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 15px;
+    background: #ff4081;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.2s, background 0.3s;
+  }
+
+  .btn:hover {
+    transform: scale(1.05);
+    background: #e73370;
+  }
+
+  /* Footer quote */
+  footer {
+    margin-top: 50px;
+    font-style: italic;
+    font-size: 1.2rem;
+    text-align: center;
+    opacity: 0.8;
+    animation: fadeInUp 1s ease forwards;
+  }
+
+  /* Animations */
+  @keyframes fadeInDown {
+    from {opacity: 0; transform: translateY(-30px);}
+    to {opacity: 1; transform: translateY(0);}
+  }
+
+  @keyframes fadeInUp {
+    from {opacity: 0; transform: translateY(30px);}
+    to {opacity: 1; transform: translateY(0);}
+  }
+
+  /* Confetti */
+  .confetti {
+    position: fixed;
+    top:0; left:0; width:100%; height:100%; pointer-events:none;
+    overflow:hidden;
+  }
+
+  .confetti-piece {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #ffd700;
+    opacity: 0.8;
+    animation: fall 3s linear infinite;
+  }
+
+  @keyframes fall {
+    0% { transform: translateY(-10px) rotate(0deg);}
+    100% { transform: translateY(100vh) rotate(360deg);}
+  }
+</style>
 </head>
 <body>
+
+<header>Welcome To My World 🌍</header>
+
+<div class="cards">
   <div class="card">
-    <h2>Welcome</h2>
-    <input type="text" id="username" placeholder="Username" required>
-    <input type="password" id="password" placeholder="Password" required>
-    <button class="btn signup" onclick="signup()">Sign Up</button>
-    <button class="btn login" onclick="login()">Login</button>
-    <p id="message"></p>
+    <h2>Total Explorers</h2>
+    <div class="number" id="explorers">0</div>
+    <p>People who have joined our journey of discovery.</p>
+    <a href="explorers.html" class="btn">Join Now</a>
   </div>
+  <div class="card">
+    <h2>Projects Completed</h2>
+    <div class="number" id="projects">0</div>
+    <p>We have completed amazing missions and adventures.</p>
+    <a href="projects.html" class="btn">Explore</a>
+  </div>
+  <div class="card">
+    <h2>Milestones Reached</h2>
+    <div class="number" id="milestones">0</div>
+    <p>Celebrating every achievement and milestone with joy.</p>
+    <a href="milestones.html" class="btn">Celebrate</a>
+  </div>
+</div>
 
-  <script>
-    function signup() {
-      let user = document.getElementById("username").value.trim();
-      let pass = document.getElementById("password").value.trim();
+<footer>"Adventure is out there, and so is knowledge."</footer>
 
-      if(user && pass) {
-        localStorage.setItem("username", user);
-        localStorage.setItem("password", pass);
-        document.getElementById("message").style.color = "#4ade80";
-        document.getElementById("message").innerText = "Signup successful! Now login.";
-      } else {
-        document.getElementById("message").style.color = "red";
-        document.getElementById("message").innerText = "Please fill all fields.";
-      }
+<div class="confetti" id="confetti"></div>
+
+<script>
+  // Animate numbers
+  function animateNumber(id, target) {
+    let count = 0;
+    const step = target / 100;
+    const interval = setInterval(() => {
+      count += step;
+      if(count >= target) { count = target; clearInterval(interval); }
+      document.getElementById(id).innerText = Math.floor(count);
+    }, 20);
+  }
+
+  animateNumber('explorers', 1250);
+  animateNumber('projects', 48);
+  animateNumber('milestones', 96);
+
+  // Confetti animation
+  function createConfetti() {
+    const container = document.getElementById('confetti');
+    for(let i=0;i<50;i++){
+      const div = document.createElement('div');
+      div.className = 'confetti-piece';
+      div.style.left = Math.random()*100+'%';
+      div.style.backgroundColor = `hsl(${Math.random()*360}, 80%, 60%)`;
+      div.style.animationDuration = (2+Math.random()*3)+'s';
+      div.style.width = (5+Math.random()*10)+'px';
+      div.style.height = div.style.width;
+      container.appendChild(div);
     }
+  }
+  createConfetti();
+</script>
 
-    function login() {
-      let user = document.getElementById("username").value.trim();
-      let pass = document.getElementById("password").value.trim();
-      let savedUser = localStorage.getItem("username");
-      let savedPass = localStorage.getItem("password");
-
-      if(user === savedUser && pass === savedPass) {
-        localStorage.setItem("isLoggedIn", "true");
-        window.location.href = "welcome.html";
-      } else {
-        document.getElementById("message").style.color = "red";
-        document.getElementById("message").innerText = "Invalid credentials!";
-      }
-    }
-  </script>
 </body>
 </html>
